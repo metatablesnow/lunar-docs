@@ -1,13 +1,28 @@
+import { Cpu } from 'lucide-react';
+
 ---
-title: Hello World
-description: Your first document
+title: Getting Started
+description: Getting started with Lunar
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+## Introduction
 
-## What is Next?
+Lunar is a administrative system designed to be fast, flexible, and easy-to-use.
 
 <Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
+  <Card icon={<Cpu />} href="/" title="Cpu">
+    Fast
+  </Card>
+</Cards>
+
+<Cards>
+  <Card
+    title="Fast"
+  >
+    Lunar was built from the ground up with optimization in mind, making it up to 3x faster than other leading administrative systems
+  </Card>
+  <Card title="href is optional">Learn more about `fetch` in Next.js.</Card>
+  <Card icon={<HomeIcon />} href="/" title="Home">
+    Go back to home
+  </Card>
 </Cards>
