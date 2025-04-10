@@ -1,17 +1,23 @@
 ---
-title: Components
-description: Components
+title: Custom Commands
+description: Learn how to make custom commands using Lunar
 ---
 
-## Code Block
+Before we start, it's recommended you are already proficient in Luau.
 
-```js
-console.log('Hello World');
-```
+---
+A command can either be local and remote, or just local:
 
-## Cards
-
+import { User } from 'lucide-react';
+import { HardDrive } from 'lucide-react';
+ 
 <Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
+  <Card icon={<User color="#4A90E2"/>} href="/" title="Local Commands">
+    Local commands are good for commands which won't affect other players, take `ping` (or basically any movement command) for example, it simply displays the client their current ping in milliseconds. 
+  </Card>
+    <Card icon={<HardDrive color="#F5A623"/>} href="/" title="Local and Remote Commands">
+    Local and Remote commands are good for commands which will affect other players, take `announce` for example, a player tells the server what they want to announce, and the server tells every client to display that message.
+  </Card>
 </Cards>
+
+<Callout title="Games with Anti-Cheats!" type="warn">It's recommended you use local and remote commands when creating movement commands to disable the anti-cheat for that player.</Callout>

@@ -2,3 +2,117 @@
 title: Getting Started
 description: Getting started with Lunar
 ---
+
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+import { File, Folder, Files } from 'fumadocs-ui/components/files';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { GithubInfo } from 'fumadocs-ui/components/github-info';
+
+import { Cpu, Paintbrush, Blocks, Rocket, FileBox } from 'lucide-react';
+
+## Introduction
+
+Lunar is a Roblox admin system built from the ground up with Fusion, designed for speed, flexibility, and effortless performance.
+
+<Cards>
+  <Card icon={<Cpu color="#5C9EFA" />} title="Efficient & Optimized">
+    Lunar is engineered for optimization, delivering faster performance than other leading administrative systems.
+  </Card>
+  <Card icon={<Paintbrush color="#FF6BB2" />} title="Fully Customizable">
+    Make Lunar your own by creating commands, designing unique themes, and building personalized GUIs to suit your needs.
+  </Card>
+  <Card icon={<Blocks color="#00FFFF" />} title="Effortless Integration">
+    Designed for easy deployment, with an organized structure that ensures a smooth and quick integration.
+  </Card>
+  <Card icon={<Rocket color="#DAA520" />} title="Intuitive">
+    Designed to be intuitive, with a natural flow that makes navigating and using the system feel effortless.
+  </Card>
+</Cards>
+
+## Installing Lunar
+
+### Installing via Roblox
+
+If you are creating an experience within Roblox Studio, you can import the `.rbxm` file directly:
+
+<Steps>
+  <Step>
+    Visit [Lunar's Release Page](https://github.com/metatablesnow/Lunar/releases)
+  </Step>
+  <Step>
+    Click the **Assets** dropdown to view the downloadable files.
+  </Step>
+  <Step>
+    Click on the `Lunar.rbxm` file to download it.
+  </Step>
+  <Step>
+    In Roblox Studio, right-click on `ServerStorage`, and select **Insert from File**.
+  </Step>
+  <Step>
+    Select the `Lunar.rbxm` file you just downloaded.
+    <Callout>
+      You can place `LunarServer` wherever you'd like, though we recommend keeping it directly in `ServerStorage` or inside a folder within it.
+    </Callout>
+  </Step>
+  <Step>
+    Drag the `LunarClient` module from inside `LunarServer` to `ReplicatedStorage`. This can also be placed elsewhere, but `ReplicatedStorage` is recommended.
+  </Step>
+  <Step>
+    Now we need a couple scripts to initialize Lunar:
+
+    **1. Server Script**  
+    Create a `Script` inside of `ServerScriptService`. Remove the default code and paste in the following:
+
+    ```lua
+    local LunarServer = require(path.to.Lunar)
+
+    LunarServer.Init(path.to.LunarClient)
+    ```
+
+    **2. Local Script**  
+    Create a `LocalScript` inside of `StarterPlayerScripts`. Remove the default code and paste in the following:
+
+    ```lua
+    local ReplicatedStorage = game:GetService("ReplicatedStorage")
+    local LunarClient = require(path.to.LunarClient)
+
+    LunarClient.Init({
+      defaultPanelToggleKeycode = Enum.KeyCode.M
+    })
+    ```
+  </Step>
+</Steps>
+
+### 🎉 Lunar is now ready to use!
+
+You can now press <kbd>M</kbd> (or whichever key you set for `defaultPanelToggleKeycode`) to open Lunar.
+
+**You might notice some things are missing** — the commands!  
+To register the default commands, add this line of code to your server script *before* initializing Lunar:
+
+```lua
+LunarServer:RegisterDefaultCommands()
+```
+
+## FAQ & Important Tips
+
+<Accordions type="single">
+  <Accordion title="If you are already using Fusion">
+    It's recommended to replace the Fusion that Lunar ships with, with the one you're already using, to reduce redundancy and keep things clean.
+
+    The bundled Fusion module can be found here:
+
+    <Files>
+      <Folder name="LunarClient" defaultOpen>
+        <Folder name="Modules" defaultOpen>
+          <File name="Fusion.luau" icon={<FileBox />} />
+        </Folder>
+      </Folder>
+    </Files>
+
+    To replace it, delete the old Fusion `ModuleScript`, make a new `ModuleScript`, name it 'Fusion', and replace the default code with:
+    ```lua
+    return require(path.to.Fusion)
+    ```
+  </Accordion>
+</Accordions>
